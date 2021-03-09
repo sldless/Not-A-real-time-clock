@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <body>
+    <style>
+    body {
+    background: black;
+}
+
+.clock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: white;
+    font-size: 350px;
+    font-family: Orbitron;
+    letter-spacing: 7px;
+
+
+
+}
+</style>
+        <div id="ChangeTheTime" class="clock" onload='Time()'>{{ hour }}:{{ minute }}:{{ second }} </div>
+    </body>
+</html>
+
+<script>
+setInterval(function Time() {
+    var req = new XMLHttpRequest();
+    req.open('GET', '/refresh_data', true);
+    req.onreadystatechange = function(e) {
+        data = JSON.parse(e.target.responseText);
+        processData();
+        updateChart();
+        }
+    };
+    req.send();
+}, 10002);
+Time();
+</script>
+
+

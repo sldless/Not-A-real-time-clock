@@ -1,43 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-
-    <body>
+<title>Uslesss clock website</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<body>
     <style>
-    body {
-    background: black;
-}
-
-.clock {
+     body {
+         background: black;
+        }
+.clockcss {
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     color: white;
-    font-size: 350px;
+    font-size: 300px;
     font-family: Orbitron;
-    letter-spacing: 7px;
-
-
-
+}
+.miniclockcss {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    margin: auto;
+    transform: translateX(-50%) translateY(-50%);
+    color: white;
+    font-size: 140px;
+    font-family: Orbitron;
 }
 </style>
-        <div id="ChangeTheTime" class="clock" onload='Time()'>{{ hour }}:{{ minute }}:{{ second }} </div>
+        <div id="24Time" class="clockcss"><script>new Date().toLocaleTimeString('en-GB')</script></div>
+        <div id="12Time" class="miniclockcss"><script>new Date().toLocaleTimeString()</script></div>
     </body>
 </html>
 
 <script>
-setInterval(function Time() {
-    var req = new XMLHttpRequest();
-    req.open('GET', '/refresh_data', true);
-    req.onreadystatechange = function(e) {
-        data = JSON.parse(e.target.responseText);
-        processData();
-        updateChart();
-        }
-    };
-    req.send();
-}, 10002);
-Time();
+setInterval(function(){ 
+    $('.clockcss').text(new Date().toLocaleTimeString('en-GB'));
+    $('.miniclockcss').text(new Date().toLocaleTimeString())
+}, 100);
 </script>
 
 
